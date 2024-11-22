@@ -41,21 +41,18 @@ function handleProfileFormSubmit(evt) {
 
 profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 
+// Плавное открытие/закрытие окон
 profilePopup.classList.add('popup_is-animated');
 cardPopup.classList.add('popup_is-animated');
 imagePopup.classList.add('popup_is-animated');
 
 function handleLikeButton(evt) {
-    evt.target.classList.toggle('card__like-button_is-active');
+    evt.target.classList.toggle('card__like-button_is-active'); // Переключение состояния
 }
 
-function openModal(popup) {
-    popup.classList.add('popup_is-opened');
-}
-
-function closeModal(popup) {
-    popup.classList.remove('popup_is-opened');
-}
+// Универсальные функции открытия/закрытия попапов
+const openModal = popup => popup.classList.add('popup_is-opened');
+const closeModal = popup => popup.classList.remove('popup_is-opened');
 
 // Обработчик кнопки редактирования профиля
 editProfile.addEventListener('click', function () {
