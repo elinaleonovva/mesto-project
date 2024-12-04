@@ -6,7 +6,7 @@ document.getElementById('profile-image').style.backgroundImage = `url(${photoEli
 import logo from '../images/logo.svg';
 document.getElementById('logo').src = logo;
 
-import { initialCards } from './db.js';
+import { initialCards } from './card_info.js';
 import { openModal, closeModal } from './modal.js';
 import { createCard } from './card.js';
 import { enableValidation } from './validate.js';
