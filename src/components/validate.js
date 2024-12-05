@@ -1,12 +1,11 @@
-// Отображает сообщение об ошибке
+// Отображение сообщения об ошибке
 function showInputError(formElement, inputElement, errorMessage, inputClass, errorClass) {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     errorElement.textContent = errorMessage;
-    inputElement.classList.add(inputClass); // визуальное оформление ошибки
-    errorElement.classList.add(errorClass); // текст ошибки
+    inputElement.classList.add(inputClass);
+    errorElement.classList.add(errorClass);
 }
 
-// Скрывает сообщение об ошибке
 function hideInputError(formElement, inputElement, inputClass, errorClass) {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     errorElement.textContent = '';
@@ -14,7 +13,6 @@ function hideInputError(formElement, inputElement, inputClass, errorClass) {
     errorElement.classList.remove(errorClass);
 }
 
-// Проверка валидности поля ввода
 function checkInputValidity(formElement, inputElement, inputErrorClass, errorClass) {
     if (inputElement.validity.valid) {
         hideInputError(formElement, inputElement, inputErrorClass, errorClass);
@@ -30,7 +28,8 @@ function hasInvalidInput(inputList) {
 function toggleButtonState(inputList, buttonElement, buttonClass) {
     if (hasInvalidInput(inputList)) {
         buttonElement.classList.add(buttonClass);
-    } else {
+    }
+    else {
         buttonElement.classList.remove(buttonClass);
     }
 }
@@ -47,7 +46,7 @@ function setEventListeners(formElement, validationSettings) {
     });
 }
 
-// Включает валидацию для всех форм на странице
+// Включение валидации для всех форм на странице
 function enableValidation(validationSettings) {
     const formList = Array.from(document.querySelectorAll(validationSettings.formClass))
     formList.forEach((formElement) => {
@@ -55,4 +54,4 @@ function enableValidation(validationSettings) {
     });
 }
 
-export {enableValidation};
+export { enableValidation };

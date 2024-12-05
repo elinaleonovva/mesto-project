@@ -1,19 +1,14 @@
 {
-  "name": "mesto-project",
+  "name": "frontend_mesto",
   "version": "1.0.0",
-  "description": "HTML, CSS, JAVASCRIPT",
-  "main": "index.js",
+  "description": "студент, когорта, стэк",
+  "main": "components/index.js",
   "scripts": {
-    "start": "webpack serve --open",
     "build": "webpack --mode production",
     "dev": "webpack serve"
   },
-  "author": "",
+  "author": "Elina Leonova",
   "license": "ISC",
-  "dependencies": {
-    "core-js": "^3.39.0",
-    "jquery": "^3.7.1"
-  },
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
@@ -22,15 +17,14 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^7.1.2",
     "cssnano": "^7.0.6",
-    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.6.3",
     "mini-css-extract-plugin": "^2.9.2",
     "postcss-loader": "^8.1.1",
-    "sass": "^1.82.0",
-    "sass-loader": "^16.0.4",
-    "style-loader": "^4.0.0",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.1.0"
+  },
+  "dependencies": {
+    "core-js": "^3.39.0"
   }
 }

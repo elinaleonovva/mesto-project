@@ -1,4 +1,3 @@
-// Работа с модальными окнами (попапами)
 function closeByOverlay(event) {
     closeModal(event.target);
 }
@@ -43,4 +42,4 @@ function closeModal(popup) {
     document.removeEventListener('keydown', closeByEscape);
 }
 
-export {openModal, closeModal}
+export { openModal, closeModal }
