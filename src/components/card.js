@@ -1,9 +1,7 @@
-// Создание карточки
-
-import { openModal } from './modal.js'
-
+// Шаблон карточки
 const cardTemplate = document.querySelector('#card-template').content;
 
+// Создание карточки
 function createCard(name, link) {
     const cardElement = cardTemplate.querySelector('.places__item').cloneNode(true);
 
@@ -17,10 +15,9 @@ function createCard(name, link) {
     cardImage.setAttribute('alt', name);
 
     cardDeleteButton.addEventListener('click', (event) => event.target.closest('.places__item').remove());
-
     cardLikeButton.addEventListener('click', () => cardLikeButton.classList.toggle('card__like-button_is-active'));
 
     return cardElement;
 }
 
-export { createCard };
+export {createCard};

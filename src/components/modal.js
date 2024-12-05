@@ -1,5 +1,4 @@
-// Работа с попапами
-
+// Работа с модальными окнами (попапами)
 function closeByOverlay(event) {
     closeModal(event.target);
 }
@@ -35,11 +34,13 @@ function openModal(popup) {
 
 function closeModal(popup) {
     popup.classList.remove('popup_is-opened');
+
     const popupContent = popup.querySelector('.popup__content');
+
     popup.removeEventListener('click', closeByOverlay);
     popupContent.removeEventListener('mouseleave', addOverlayListener);
     popupContent.removeEventListener('mouseenter', removeOverlayListener);
     document.removeEventListener('keydown', closeByEscape);
 }
 
-export { openModal, closeModal }
+export {openModal, closeModal}
