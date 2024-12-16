@@ -44,6 +44,9 @@ function setEventListeners(formElement, validationSettings) {
             toggleButtonState(inputList, buttonElement, validationSettings.buttonInactiveClass);
         });
     });
+    formElement.addEventListener('submit', () => {
+        buttonElement.classList.add(validationSettings.buttonInactiveClass);
+    });
 }
 
 // Включение валидации для всех форм на странице
