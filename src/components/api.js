@@ -6,6 +6,7 @@ const config = {
     }
 }
 
+// Отправка HTTP-запроса с заданным методом
 function sendRequest(urlPath, method, body) {
     const parameters = {
         method: method,

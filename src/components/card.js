@@ -1,10 +1,10 @@
 // Создание карточки
-
 const cardTemplate = document.querySelector('#card-template').content;
 
 function createCard(card, user_id) {
     const cardElement = cardTemplate.querySelector('.places__item').cloneNode(true);
 
+    // Установка атрибута id для карточки
     cardElement.setAttribute('id', card._id);
 
     cardElement.querySelector('.card__title').textContent = card.name;
@@ -14,6 +14,7 @@ function createCard(card, user_id) {
     const cardLikeButton = cardElement.querySelector('.card__like-button');
     const cardLikeAmount = cardElement.querySelector('.card__like-amount');
 
+    // Текущий пользователь не является владельцем карточки
     if (card.owner._id !== user_id) {
         cardDeleteButton.remove();
     }

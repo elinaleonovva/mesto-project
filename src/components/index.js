@@ -5,13 +5,12 @@ import { createCard } from './card.js';
 import { enableValidation } from './validate.js';
 import { getInitialCards, getUserInfo, changeProfile, addCard, changeAvatar, likeCard, unlikeCard, deleteCard } from './api.js';
 
-// -----Выбор элементов-----
 
 // Профиль
-
 const userName = document.querySelector('.profile__title');
 const userText = document.querySelector('.profile__description');
 const userAvatar = document.querySelector('.profile__image');
+let userId;
 
 const editProfileButton = document.querySelector('.profile__edit-button');
 const profilePopup = document.querySelector('.popup_type_edit');
@@ -23,7 +22,6 @@ const closeProfileButton = profilePopup.querySelector('.popup__close');
 const profileFormButton = profilePopup.querySelector('.popup__button');
 
 // Аватар
-
 const avatarPopup = document.querySelector('.popup_type_avatar');
 
 const avatarForm = avatarPopup.querySelector('.popup__form');
@@ -32,7 +30,6 @@ const avatarFormButton = avatarPopup.querySelector('.popup__button');
 const closeAvatarButton = avatarPopup.querySelector('.popup__close');
 
 // Изображение
-
 const imagePopup = document.querySelector('.popup_type_image');
 
 const imageImage = imagePopup.querySelector('.popup__image');
@@ -40,7 +37,6 @@ const imageCaption = imagePopup.querySelector('.popup__caption');
 const closeImageButton = imagePopup.querySelector('.popup__close');
 
 // Места
-
 const cardsList = document.querySelector('.places__list');
 
 const addCardButton = document.querySelector('.profile__add-button');
@@ -52,10 +48,8 @@ const cardLinkInput = cardPopup.querySelector('.popup__input_type_url');
 const closeCardButton = cardPopup.querySelector('.popup__close');
 const cardFormButton = cardPopup.querySelector('.popup__button');
 
-// -----Загрузка страницы-----
 
-let userId;
-
+// Получение данных с сервера (пользователя и карточки)
 Promise.all([getUserInfo(), getInitialCards()])
     .then(([thisUser, cards]) => {
         userName.textContent = thisUser.name;
@@ -82,8 +76,7 @@ const validationSettings = {
 
 enableValidation(validationSettings);
 
-// -----Функционал-----
-
+// Управление отправкой запроса, изменение текста кнопки
 function handleSubmit(requestPromise, popupElement, formButton, promiseFunc) {
     formButton.textContent = 'Сохранение...';
     requestPromise
@@ -95,8 +88,7 @@ function handleSubmit(requestPromise, popupElement, formButton, promiseFunc) {
         });
 }
 
-// Форма профиля
-
+// Отправка формы редактирования профиля
 function handleProfileFormSubmit(event) {
     event.preventDefault();
 
@@ -120,8 +112,7 @@ editProfileButton.addEventListener('click', () => {
 profileFrom.addEventListener('submit', handleProfileFormSubmit);
 closeProfileButton.addEventListener('click', () => closeModal(profilePopup));
 
-// Форма аватара
-
+// Изменения аватара
 function handleAvatarSubmit(event) {
     event.preventDefault();
 
@@ -134,7 +125,7 @@ function handleAvatarSubmit(event) {
 }
 
 userAvatar.addEventListener('click', () => {
-    avatarUrlInput.value = userAvatar.style.backgroundImage.slice(5, -2)
+    avatarUrlInput.value = userAvatar.style.backgroundImage.slice(5, -2) // Извлекаем URL аватара
     openModal(avatarPopup);
 });
 
@@ -142,7 +133,6 @@ avatarForm.addEventListener('submit', handleAvatarSubmit);
 closeAvatarButton.addEventListener('click', () => closeModal(avatarPopup));
 
 // Форма добавления карточки
-
 function handleCardFormSubmit(event) {
     event.preventDefault();
 
@@ -154,6 +144,7 @@ function handleCardFormSubmit(event) {
     );
 }
 
+// Очищение полей ввода
 addCardButton.addEventListener('click', () => {
     cardNameInput.value = '';
     cardLinkInput.value = '';
@@ -164,12 +155,7 @@ cardForm.addEventListener('submit', handleCardFormSubmit);
 closeCardButton.addEventListener('click', () => closeModal(cardPopup));
 
 // Изображение
-
 closeImageButton.addEventListener('click', () => closeModal(imagePopup));
-
-
-
-// -----Аггрегация листенеров-----
 
 cardsList.addEventListener('click', (event) => {
     if (event.target.classList.contains('card__image')) {
@@ -193,6 +179,7 @@ cardsList.addEventListener('click', (event) => {
             .then(data => cardLikeAmount.textContent = data.likes.length)
             .catch(err => console.log(`Ошибка: ${err}`))
     }
+    // Удаление карточки
     else if (event.target.classList.contains('card__delete-button')) {
         const likedCard = event.target.closest('.places__item');
         deleteCard(likedCard.id)

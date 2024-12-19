@@ -1,5 +1,4 @@
 // Работа с попапами
-
 function closeByOverlay(event) {
     closeModal(event.target);
 }
